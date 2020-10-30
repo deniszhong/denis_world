@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.denis.zhong.world.mapper.TopicMapper">
+
+    <resultMap id="BaseResultMap" type="com.denis.zhong.world.mapper.entity.Topic">
+        <!--@Table topic-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+        <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+        <result property="modifytime" column="modifytime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, title, deleted, createtime, modifytime
+        from topic
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, title, deleted, createtime, modifytime
+        from topic
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, title, deleted, createtime, modifytime
+        from topic
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="deleted != null">
+                and deleted = #{deleted}
+            </if>
+            <if test="createtime != null">
+                and createtime = #{createtime}
+            </if>
+            <if test="modifytime != null">
+                and modifytime = #{modifytime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into topic(title, deleted, createtime, modifytime)
+        values (#{title}, #{deleted}, #{createtime}, #{modifytime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update topic
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime},
+            </if>
+            <if test="modifytime != null">
+                modifytime = #{modifytime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from topic where id = #{id}
+    </delete>
+
+</mapper>
