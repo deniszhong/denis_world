@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @since 2020-10-30 14:38:41
  */
 @RestController
-@RequestMapping("topic")
+@RequestMapping("/topic")
 public class TopicController {
     /**
      * 服务对象
@@ -27,8 +27,8 @@ public class TopicController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
-    public Topic selectOne(Integer id) {
+    @GetMapping("/selectOne/{id}")
+    public Topic selectOne(@PathVariable("id") Integer id) {
         return this.topicService.queryById(id);
     }
 

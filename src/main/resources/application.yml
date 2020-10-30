@@ -1,0 +1,42 @@
+#database
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://121.196.54.2:3306/deniszhong?useUnicode=true&useSSL=true&autoReconnect=true&failOverReadOnly=false
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      ###connection pool
+      #配置初始化大小、最小、最大
+      initial-size: 2
+      max-active: 4
+      min-idle: 1
+      #配置获取连接等待超时的时间
+      max-wait: 60000
+      #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭
+      pool-prepared-statements: false
+      #用来检测连接是否有效的sql
+      validation-query: select 1
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 2000
+      #配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 600000
+      max-evictable-idle-time-millis: 900000
+      ###启用相应的内置Filter,启用filter的默认配置
+      filters: stat,log4j2,wall
+
+    ###或者手动启用filter，自定义配置
+  #spring.datasource.druid.filter.stat.enabled=true
+  #spring.datasource.druid.filter.stat.log-slow-sql=true
+  #spring.datasource.druid.filter.stat.slow-sql-millis=2000
+  #spring.datasource.druid.filter.stat.db-type=mysql
+
+
+mybatis:
+  mapper-location: classpath*:/mapper/*.xml
+  type-aliases-package: com.denis.zhong.world.mapper.entity
+

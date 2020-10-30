@@ -1,6 +1,6 @@
 package com.denis.zhong.world.service.impl;
 
-import com.denis.zhong.world.entity.Topic;
+import com.denis.zhong.world.mapper.entity.Topic;
 import com.denis.zhong.world.mapper.TopicMapper;
 import com.denis.zhong.world.service.TopicService;
 import org.springframework.stereotype.Service;

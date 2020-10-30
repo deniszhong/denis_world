@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(value = "mapper.*")
+@MapperScan(value = "com.denis.zhong.world.mapper")
 public class WorldApplication {
 
     public static void main(String[] args) {
