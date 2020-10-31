@@ -1,6 +1,6 @@
 package com.denis.zhong.world.controller;
 
-import com.denis.zhong.world.mapper.entity.Post;
+import com.denis.zhong.world.entity.Post;
 import com.denis.zhong.world.service.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import javax.annotation.Resource;
  * 帖子(Post)表控制层
  *
  * @author deniszhong
- * @since 2020-10-30 15:02:49
+ * @since 2020-10-31 17:02:38
  */
 @RestController
-@RequestMapping("/post")
+@RequestMapping("post")
 public class PostController {
     /**
      * 服务对象
@@ -27,8 +27,8 @@ public class PostController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("/selectOne/{id}")
-    public Post selectOne(@PathVariable(value="id") Integer id) {
+    @GetMapping("selectOne")
+    public Post selectOne(Integer id) {
         return this.postService.queryById(id);
     }
 

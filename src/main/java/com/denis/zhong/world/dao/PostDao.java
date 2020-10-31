@@ -1,18 +1,16 @@
-package com.denis.zhong.world.mapper;
+package com.denis.zhong.world.dao;
 
-import com.denis.zhong.world.mapper.entity.Post;
+import com.denis.zhong.world.entity.Post;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
-import org.springframework.stereotype.Repository;
 
 /**
  * 帖子(Post)表数据库访问层
  *
  * @author deniszhong
- * @since 2020-10-30 15:02:49
+ * @since 2020-10-31 17:02:38
  */
-@Repository
-public interface PostMapper {
+public interface PostDao {
 
     /**
      * 通过ID查询单条数据

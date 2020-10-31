@@ -1,7 +1,7 @@
 package com.denis.zhong.world.service.impl;
 
-import com.denis.zhong.world.mapper.entity.Topic;
-import com.denis.zhong.world.mapper.TopicMapper;
+import com.denis.zhong.world.entity.Topic;
+import com.denis.zhong.world.dao.TopicDao;
 import com.denis.zhong.world.service.TopicService;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +12,12 @@ import java.util.List;
  * 主题(Topic)表服务实现类
  *
  * @author deniszhong
- * @since 2020-10-30 14:38:41
+ * @since 2020-10-31 14:50:39
  */
-@Service("topicService")
+@Service
 public class TopicServiceImpl implements TopicService {
     @Resource
-    private TopicMapper topicMapper;
+    private TopicDao topicDao;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class TopicServiceImpl implements TopicService {
      */
     @Override
     public Topic queryById(Integer id) {
-        return this.topicMapper.queryById(id);
+        return this.topicDao.queryById(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class TopicServiceImpl implements TopicService {
      */
     @Override
     public List<Topic> queryAllByLimit(int offset, int limit) {
-        return this.topicMapper.queryAllByLimit(offset, limit);
+        return this.topicDao.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class TopicServiceImpl implements TopicService {
      */
     @Override
     public Topic insert(Topic topic) {
-        this.topicMapper.insert(topic);
+        this.topicDao.insert(topic);
         return topic;
     }
 
@@ -62,7 +62,7 @@ public class TopicServiceImpl implements TopicService {
      */
     @Override
     public Topic update(Topic topic) {
-        this.topicMapper.update(topic);
+        this.topicDao.update(topic);
         return this.queryById(topic.getId());
     }
 
@@ -74,6 +74,6 @@ public class TopicServiceImpl implements TopicService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.topicMapper.deleteById(id) > 0;
+        return this.topicDao.deleteById(id) > 0;
     }
 }

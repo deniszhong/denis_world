@@ -1,7 +1,7 @@
 package com.denis.zhong.world.service.impl;
 
-import com.denis.zhong.world.mapper.entity.Post;
-import com.denis.zhong.world.mapper.PostMapper;
+import com.denis.zhong.world.entity.Post;
+import com.denis.zhong.world.dao.PostDao;
 import com.denis.zhong.world.service.PostService;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +12,12 @@ import java.util.List;
  * 帖子(Post)表服务实现类
  *
  * @author deniszhong
- * @since 2020-10-30 15:02:49
+ * @since 2020-10-31 17:02:38
  */
-@Service
+@Service("postService")
 public class PostServiceImpl implements PostService {
     @Resource
-    private PostMapper postMapper;
+    private PostDao postDao;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class PostServiceImpl implements PostService {
      */
     @Override
     public Post queryById(Integer id) {
-        return this.postMapper.queryById(id);
+        return this.postDao.queryById(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class PostServiceImpl implements PostService {
      */
     @Override
     public List<Post> queryAllByLimit(int offset, int limit) {
-        return this.postMapper.queryAllByLimit(offset, limit);
+        return this.postDao.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class PostServiceImpl implements PostService {
      */
     @Override
     public Post insert(Post post) {
-        this.postMapper.insert(post);
+        this.postDao.insert(post);
         return post;
     }
 
@@ -62,7 +62,7 @@ public class PostServiceImpl implements PostService {
      */
     @Override
     public Post update(Post post) {
-        this.postMapper.update(post);
+        this.postDao.update(post);
         return this.queryById(post.getId());
     }
 
@@ -74,6 +74,6 @@ public class PostServiceImpl implements PostService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.postMapper.deleteById(id) > 0;
+        return this.postDao.deleteById(id) > 0;
     }
 }

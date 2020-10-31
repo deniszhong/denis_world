@@ -1,14 +1,17 @@
 package com.denis.zhong.world.service;
 
-import com.denis.zhong.world.mapper.entity.Topic;
+import com.denis.zhong.world.entity.Topic;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
 
 /**
  * 主题(Topic)表服务接口
  *
  * @author deniszhong
- * @since 2020-10-30 14:38:41
+ * @since 2020-10-31 14:50:39
  */
+@Mapper
 public interface TopicService {
 
     /**

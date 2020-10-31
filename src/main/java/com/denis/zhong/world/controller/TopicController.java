@@ -1,6 +1,6 @@
 package com.denis.zhong.world.controller;
 
-import com.denis.zhong.world.mapper.entity.Topic;
+import com.denis.zhong.world.entity.Topic;
 import com.denis.zhong.world.service.TopicService;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import javax.annotation.Resource;
  * 主题(Topic)表控制层
  *
  * @author deniszhong
- * @since 2020-10-30 14:38:41
+ * @since 2020-10-31 14:50:40
  */
 @RestController
 @RequestMapping("/topic")

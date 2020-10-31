@@ -1,13 +1,13 @@
 package com.denis.zhong.world.service;
 
-import com.denis.zhong.world.mapper.entity.Post;
+import com.denis.zhong.world.entity.Post;
 import java.util.List;
 
 /**
  * 帖子(Post)表服务接口
  *
  * @author deniszhong
- * @since 2020-10-30 15:04:19
+ * @since 2020-10-31 17:02:38
  */
 public interface PostService {
 

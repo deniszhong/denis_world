@@ -1,4 +1,4 @@
-package com.denis.zhong.world.mapper.entity;
+package com.denis.zhong.world.entity;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -7,10 +7,10 @@ import java.io.Serializable;
  * 帖子(Post)实体类
  *
  * @author deniszhong
- * @since 2020-10-30 15:02:49
+ * @since 2020-10-31 17:02:38
  */
 public class Post implements Serializable {
-    private static final long serialVersionUID = 439176520836727448L;
+    private static final long serialVersionUID = 205023968326861621L;
     
     private Integer id;
     

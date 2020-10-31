@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(value = "com.denis.zhong.world.mapper")
+@MapperScan(value = "com.denis.zhong.world.dao")
 public class WorldApplication {
 
     public static void main(String[] args) {

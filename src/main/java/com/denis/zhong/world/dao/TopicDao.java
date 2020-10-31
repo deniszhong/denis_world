@@ -1,18 +1,19 @@
-package com.denis.zhong.world.mapper;
+package com.denis.zhong.world.dao;
 
-import com.denis.zhong.world.mapper.entity.Topic;
+import com.denis.zhong.world.entity.Topic;
 import org.apache.ibatis.annotations.Param;
-import java.util.List;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * 主题(Topic)表数据库访问层
  *
  * @author deniszhong
- * @since 2020-10-30 14:53:55
+ * @since 2020-10-31 14:50:38
  */
 @Repository
-public interface TopicMapper {
+public interface TopicDao {
 
     /**
      * 通过ID查询单条数据
