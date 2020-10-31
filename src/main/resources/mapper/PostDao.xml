@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.denis.zhong.world.mapper.TopicMapper">
+<mapper namespace="com.denis.zhong.world.dao.PostDao">
 
-    <resultMap id="BaseResultMap" type="com.denis.zhong.world.mapper.entity.Topic">
-        <!--@Table topic-->
+    <resultMap id="BaseResultMap" type="com.denis.zhong.world.entity.Post">
+        <!--@Table post-->
         <result property="id" column="id" jdbcType="INTEGER"/>
-        <result property="title" column="title" jdbcType="VARCHAR"/>
-        <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+        <result property="topicId" column="topic_id" jdbcType="INTEGER"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
         <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
         <result property="modifytime" column="modifytime" jdbcType="TIMESTAMP"/>
+        <result property="deleted" column="deleted" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, title, deleted, createtime, modifytime
-        from topic
+          id, topic_id, content, createtime, modifytime, deleted
+        from deniszhong.post
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          id, title, deleted, createtime, modifytime
-        from topic
+          id, topic_id, content, createtime, modifytime, deleted
+        from deniszhong.post
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          id, title, deleted, createtime, modifytime
-        from topic
+          id, topic_id, content, createtime, modifytime, deleted
+        from deniszhong.post
         <where>
             <if test="id != null">
                 and id = #{id}
             </if>
-            <if test="title != null and title != ''">
-                and title = #{title}
+            <if test="topicId != null">
+                and topic_id = #{topicId}
             </if>
-            <if test="deleted != null">
-                and deleted = #{deleted}
+            <if test="content != null and content != ''">
+                and content = #{content}
             </if>
             <if test="createtime != null">
                 and createtime = #{createtime}
@@ -48,24 +49,27 @@
             <if test="modifytime != null">
                 and modifytime = #{modifytime}
             </if>
+            <if test="deleted != null">
+                and deleted = #{deleted}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into topic(title, deleted, createtime, modifytime)
-        values (#{title}, #{deleted}, #{createtime}, #{modifytime})
+        insert into deniszhong.post(topic_id, content, createtime, modifytime, deleted)
+        values (#{topicId}, #{content}, #{createtime}, #{modifytime}, #{deleted})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update topic
+        update deniszhong.post
         <set>
-            <if test="title != null and title != ''">
-                title = #{title},
+            <if test="topicId != null">
+                topic_id = #{topicId},
             </if>
-            <if test="deleted != null">
-                deleted = #{deleted},
+            <if test="content != null and content != ''">
+                content = #{content},
             </if>
             <if test="createtime != null">
                 createtime = #{createtime},
@@ -73,13 +77,16 @@
             <if test="modifytime != null">
                 modifytime = #{modifytime},
             </if>
+            <if test="deleted != null">
+                deleted = #{deleted},
+            </if>
         </set>
         where id = #{id}
     </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from topic where id = #{id}
+        delete from deniszhong.post where id = #{id}
     </delete>
 
 </mapper>
