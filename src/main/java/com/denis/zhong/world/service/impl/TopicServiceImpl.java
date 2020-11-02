@@ -3,6 +3,8 @@ package com.denis.zhong.world.service.impl;
 import com.denis.zhong.world.entity.Topic;
 import com.denis.zhong.world.dao.TopicDao;
 import com.denis.zhong.world.service.TopicService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -40,6 +42,12 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public List<Topic> queryAllByLimit(int offset, int limit) {
         return this.topicDao.queryAllByLimit(offset, limit);
+    }
+
+    @Override
+    public PageInfo<Topic> queryPageTopicInfo(int offset, int limit) {
+        PageInfo<Topic> topicPageInfo = PageHelper.startPage(offset,limit).doSelectPageInfo(()->topicDao.queryAllForPageList());
+        return topicPageInfo;
     }
 
     /**

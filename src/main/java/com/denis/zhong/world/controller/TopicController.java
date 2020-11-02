@@ -2,6 +2,7 @@ package com.denis.zhong.world.controller;
 
 import com.denis.zhong.world.entity.Topic;
 import com.denis.zhong.world.service.TopicService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -30,6 +31,11 @@ public class TopicController {
     @GetMapping("/selectOne/{id}")
     public Topic selectOne(@PathVariable("id") Integer id) {
         return this.topicService.queryById(id);
+    }
+
+    @GetMapping("/selectOne/{offset}/{limit}")
+    public PageInfo<Topic> getTopicForPage(@PathVariable("offset") Integer offset,@PathVariable("limit") Integer limit){
+        return topicService.queryPageTopicInfo(offset,limit);
     }
 
 }

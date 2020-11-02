@@ -1,6 +1,7 @@
 package com.denis.zhong.world.service;
 
 import com.denis.zhong.world.entity.Topic;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -30,6 +31,14 @@ public interface TopicService {
      * @return 对象列表
      */
     List<Topic> queryAllByLimit(int offset, int limit);
+
+    /**
+     * 分页查询
+     * @param offset
+     * @param limit
+     * @return
+     */
+    PageInfo<Topic> queryPageTopicInfo(int offset,int limit);
 
     /**
      * 新增数据

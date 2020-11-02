@@ -29,9 +29,6 @@ spring:
 mybatis:
   type-aliases-package: com.denis.zhong.world.entity
   mapper-locations: classpath:/mapper/*.xml
-#  config-location: classpath:/config/mybatis-config.xml
-  configuration:
-    interceptors:
-      - com.denis.zhong.world.intercept.SqlLogIntercept
-      - com.github.pagehelper.PageInterceptor
+  config-location: classpath:/config/mybatis-config.xml
+
 

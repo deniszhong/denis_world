@@ -27,6 +27,12 @@
         limit #{offset}, #{limit}
     </select>
 
+    <select id="queryAllForPageList" resultMap="BaseResultMap">
+        select
+          id, title, deleted, createtime, modifytime
+        from deniszhong.topic
+    </select>
+
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select

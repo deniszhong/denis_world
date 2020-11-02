@@ -32,6 +32,8 @@ public interface TopicDao {
      */
     List<Topic> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
+    List<Topic> queryAllForPageList();
+
 
     /**
      * 通过实体作为筛选条件查询
