@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--packagingData="true" 打印堆栈，且包信息，资源有点浪费-->
+<configuration scan="true" debug="false" packagingData="true">
+    <property name="LOG_HOME" value="D:/workspace/logs" />
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/world.txt</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>world-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+            <!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>15</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--邮件appender,error级别-->
+    <!--<appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">-->
+        <!--<evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">-->
+            <!--<marker>NOTIFY_ADMIN</marker>-->
+            <!--&lt;!&ndash; you specify add as many markers as you want &ndash;&gt;-->
+            <!--<marker>TRANSACTION_FAILURE</marker>-->
+        <!--</evaluator>-->
+        <!--<smtpHost>${smtpHost}</smtpHost>-->
+        <!--<to>${to}</to>-->
+        <!--<from>${from}</from>-->
+        <!--<layout class="ch.qos.logback.classic.html.HTMLLayout"/>-->
+    <!--</appender>-->
+
+    <!--additivity属性可以用来提前退出这个logger的多层级游历-->
+    <!--若是additivity设为false，则子Logger只会在自己的appender里输出，而不会在父Logger的appender里输出-->
+    <logger name="org.springframework" level="DEBUG" additivity="false">
+        <appender-ref ref="ROLLING" />
+    </logger>
+    <logger name ="com.denis.zhong.world" level="INFO"></logger>
+
+
+    <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->
+        <!--<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">-->
+            <!--<driverClass>com.mysql.jdbc.Driver</driverClass>-->
+            <!--<url>jdbc:mysql://host_name:3306/datebase_name</url>-->
+            <!--<user>username</user>-->
+            <!--<password>password</password>-->
+        <!--</connectionSource>-->
+    <!--</appender>-->
+
+
+
+    <root level="DEBUG">
+        <!--<appender-ref ref="DB"/>-->
+        <!--<appender-ref ref="EMAIL"/>-->
+        <appender-ref ref="ROLLING" />
+    </root>
+</configuration>

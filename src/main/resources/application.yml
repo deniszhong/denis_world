@@ -19,6 +19,11 @@ spring:
       min-evictable-idle-time-millis: 600000
       max-evictable-idle-time-millis: 900000
       filters: stat,log4j2,wall
+  mail:
+    host: smtp.163.com
+    username: god_world@163.com
+    password: ERZKJIXAYFKIOBSC
+    port: 465
 
   #spring.datasource.druid.filter.stat.enabled=true
   #spring.datasource.druid.filter.stat.log-slow-sql=true
@@ -30,5 +35,7 @@ mybatis:
   type-aliases-package: com.denis.zhong.world.entity
   mapper-locations: classpath:/mapper/*.xml
   config-location: classpath:/config/mybatis-config.xml
+
+
 
 

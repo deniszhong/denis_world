@@ -10,6 +10,8 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -32,6 +34,8 @@ import java.util.Properties;
 })
 public class SqlLogIntercept implements Interceptor {
 
+    private static final Logger logger = LoggerFactory.getLogger(SqlLogIntercept.class);
+
     /**
      * 是否显示语句的执行时间
      */
@@ -43,7 +47,7 @@ public class SqlLogIntercept implements Interceptor {
         // 获取执行方法的MappedStatement参数,不管是Executor的query方法还是update方法，第一个参数都是MappedStatement
         MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
         Properties prop = mappedStatement.getConfiguration().getVariables();
-        System.out.println("~~~~~~~~~~"+prop.getProperty("enableExecutorTime"));
+//        System.out.println("~~~~~~~~~~"+prop.getProperty("enableExecutorTime"));
         Object parameter = null;
         if (invocation.getArgs().length > 1) {
             parameter = invocation.getArgs()[1];
@@ -56,10 +60,12 @@ public class SqlLogIntercept implements Interceptor {
         long sqlEndTime = System.currentTimeMillis();
         // 打印mysql执行语句
         String sql = getSql(configuration, boundSql, sqlId);
-        System.out.println(sql);
+        logger.info("执行的sql:{}",sql);
+//        System.out.println(sql);
         // 打印mysql执行时间
         String sqlTimeLog = sqlId + " 方法对应sql执行时间:" + (sqlEndTime - sqlStartTime) + " ms";
-        System.out.println(sqlTimeLog);
+//        System.out.println(sqlTimeLog);
+        logger.info(sqlTimeLog);
         return re;
     }
 
