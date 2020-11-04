@@ -23,7 +23,7 @@ spring:
     host: smtp.163.com
     username: god_world@163.com
     password: ERZKJIXAYFKIOBSC
-    port: 465
+    port: 25
 
   #spring.datasource.druid.filter.stat.enabled=true
   #spring.datasource.druid.filter.stat.log-slow-sql=true

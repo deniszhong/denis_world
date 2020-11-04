@@ -2,6 +2,13 @@
 <!--packagingData="true" 打印堆栈，且包信息，资源有点浪费-->
 <configuration scan="true" debug="false" packagingData="true">
     <property name="LOG_HOME" value="D:/workspace/logs" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}-%msg%n</pattern>
+        </encoder>
+    </appender>
+
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/world.txt</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
@@ -35,7 +42,9 @@
     <logger name="org.springframework" level="DEBUG" additivity="false">
         <appender-ref ref="ROLLING" />
     </logger>
-    <logger name ="com.denis.zhong.world" level="INFO"></logger>
+    <logger name ="com.denis.zhong.world" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 
 
     <!--<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">-->
