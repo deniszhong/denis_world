@@ -69,4 +69,14 @@ public class Topic implements Serializable {
         this.modifytime = modifytime;
     }
 
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", deleted=" + deleted +
+                ", createtime=" + createtime +
+                ", modifytime=" + modifytime +
+                '}';
+    }
 }

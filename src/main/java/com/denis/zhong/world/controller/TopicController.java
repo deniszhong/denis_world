@@ -1,11 +1,13 @@
 package com.denis.zhong.world.controller;
 
+import com.denis.zhong.world.controller.vo.ResultDTO;
 import com.denis.zhong.world.entity.Topic;
 import com.denis.zhong.world.service.TopicService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 主题(Topic)表控制层
@@ -28,12 +30,16 @@ public class TopicController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("/selectOne/{id}")
-    public Topic selectOne(@PathVariable("id") Integer id) {
-        return this.topicService.queryById(id);
+    @RequestMapping("/selectOne/{id}")
+    public ResultDTO<Topic> selectOne(@PathVariable("id") Integer id) {
+        ResultDTO<Topic> result= new ResultDTO<>();
+        Topic topic = this.topicService.queryById(id);
+        result.setData(topic);
+        return result;
+
     }
 
-    @GetMapping("/selectOne/{offset}/{limit}")
+    @RequestMapping("/selectOne/{offset}/{limit}")
     public PageInfo<Topic> getTopicForPage(@PathVariable("offset") Integer offset,@PathVariable("limit") Integer limit){
         return topicService.queryPageTopicInfo(offset,limit);
     }

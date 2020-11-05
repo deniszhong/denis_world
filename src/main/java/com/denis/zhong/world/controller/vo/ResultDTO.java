@@ -33,4 +33,13 @@ public class ResultDTO<T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "ResultDTO{" +
+                "message='" + message + '\'' +
+                ", code='" + code + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }
