@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class GratefulShutDownTestController {
 
+    /**
+     * 请求进来 之后断开应用，
+     * 测试优雅关机
+     * @return
+     */
     @RequestMapping("/oper")
     public ResultDTO<Boolean> shutdwon(){
         log.info("enter into shut down and sleep 20sec");

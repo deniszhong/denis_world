@@ -1,6 +1,6 @@
 package com.denis.zhong.world.controller.vo;
 
-import com.denis.zhong.world.constant.CommonConstant;
+import com.denis.zhong.world.common.constant.CommonConstant;
 
 public class ResultDTO<T> {
 

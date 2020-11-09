@@ -1,4 +1,4 @@
-package com.denis.zhong.world.constant;
+package com.denis.zhong.world.common.constant;
 
 public class CommonConstant {
 
