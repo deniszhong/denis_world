@@ -6,7 +6,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /***
@@ -27,7 +26,7 @@ public class BaseLogAspectJ {
     @Around("@annotation(requestMapping)")
     public Object around(ProceedingJoinPoint point, RequestMapping requestMapping) throws Throwable{
         Object[] args = point.getArgs();
-        log.info("value:{}",requestMapping.value());
+        log.info("request value:{}",requestMapping.value());
         if(args.length > 0){
             for(Object obj : args){
                 log.info("请求入参:{}",obj.toString());
