@@ -16,7 +16,7 @@
     <select id="queryById" resultMap="BaseResultMap">
         select
           id, topic_id, content, createtime, modifytime, deleted
-        from deniszhong.post
+        from post
         where id = #{id}
     </select>
 
@@ -24,7 +24,7 @@
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
           id, topic_id, content, createtime, modifytime, deleted
-        from deniszhong.post
+        from post
         limit #{offset}, #{limit}
     </select>
 
@@ -32,7 +32,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
           id, topic_id, content, createtime, modifytime, deleted
-        from deniszhong.post
+        from post
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -57,13 +57,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into deniszhong.post(topic_id, content, createtime, modifytime, deleted)
+        insert into post(topic_id, content, createtime, modifytime, deleted)
         values (#{topicId}, #{content}, #{createtime}, #{modifytime}, #{deleted})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update deniszhong.post
+        update post
         <set>
             <if test="topicId != null">
                 topic_id = #{topicId},
@@ -86,7 +86,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from deniszhong.post where id = #{id}
+        delete from post where id = #{id}
     </delete>
 
 </mapper>

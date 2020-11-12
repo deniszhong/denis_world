@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @since 2020-10-31 17:02:38
  */
 @RestController
-@RequestMapping("post")
+@RequestMapping("/post")
 public class PostController {
     /**
      * 服务对象
@@ -27,7 +27,7 @@ public class PostController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
+    @GetMapping("/selectOne")
     public Post selectOne(Integer id) {
         return this.postService.queryById(id);
     }
