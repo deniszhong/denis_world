@@ -86,7 +86,7 @@
             <version>1.18.12</version>
         </dependency>
 
-
+    <!--使用junit 5-->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
@@ -99,9 +99,10 @@
         </exclusions>
     </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.6.3</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>

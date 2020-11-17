@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
 
@@ -84,6 +85,7 @@ public class HttpUtil {
             while ((length = inputStream.read(buffer)) != -1) {
                 resultStr.append(new String(buffer, 0, length));
             }
+//            System.out.println(resultStr.toString());
             return resultStr.toString();
         }
         return null;
@@ -102,8 +104,10 @@ public class HttpUtil {
      */
     public <T> T post(Class<T> cls,String jsonStrEntity,Map<String,String> headers,String url){
         CloseableHttpClient httpClient = HttpClients.createDefault();
-
-        HttpUriRequest request = new HttpPost(URI.create(url));
+        HttpPost request = new HttpPost(URI.create(url));
+        StringEntity entityStr = new StringEntity(jsonStrEntity, StandardCharsets.UTF_8);
+        entityStr.setContentType("application/json");
+        request.setEntity(entityStr);
         if (headers != null) {
             for (String key : headers.keySet()) {
                 request.addHeader(key, headers.get(key));

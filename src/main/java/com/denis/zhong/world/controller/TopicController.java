@@ -32,7 +32,7 @@ public class TopicController {
      */
     @RequestMapping("/selectOne/{id}")
     public ResultDTO<Topic> selectOne(@PathVariable("id") Integer id) {
-        ResultDTO<Topic> result= new ResultDTO<>();
+        ResultDTO<Topic> result = new ResultDTO<>();
         Topic topic = this.topicService.queryById(id);
         result.setData(topic);
         return result;
@@ -40,8 +40,8 @@ public class TopicController {
     }
 
     @RequestMapping("/selectOne/{offset}/{limit}")
-    public PageInfo<Topic> getTopicForPage(@PathVariable("offset") Integer offset,@PathVariable("limit") Integer limit){
-        return topicService.queryPageTopicInfo(offset,limit);
+    public PageInfo<Topic> getTopicForPage(@PathVariable("offset") Integer offset, @PathVariable("limit") Integer limit) {
+        return topicService.queryPageTopicInfo(offset, limit);
     }
 
 }

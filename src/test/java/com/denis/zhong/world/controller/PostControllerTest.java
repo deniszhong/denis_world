@@ -3,8 +3,8 @@ package com.denis.zhong.world.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.denis.zhong.world.common.BaseTest;
-import com.fasterxml.jackson.databind.ser.Serializers;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.RequestBuilder;

@@ -24,7 +24,13 @@ spring:
     username: god_world@163.com
     password: ERZKJIXAYFKIOBSC
     port: 25
-
+#  http:
+#    encoding:
+#      charset: UTF-8
+#      force: true
+#      force-request: true
+  #  boot:
+#    enableautoconfiguration: false
   #spring.datasource.druid.filter.stat.enabled=true
   #spring.datasource.druid.filter.stat.log-slow-sql=true
   #spring.datasource.druid.filter.stat.slow-sql-millis=2000
@@ -35,6 +41,8 @@ mybatis:
   type-aliases-package: com.denis.zhong.world.entity
   mapper-locations: classpath:/mapper/*.xml
   config-location: classpath:/config/mybatis-config.xml
+
+
 
 
 
