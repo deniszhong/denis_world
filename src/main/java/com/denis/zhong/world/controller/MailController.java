@@ -22,7 +22,7 @@ public class MailController {
         SendMailBO mailBO = new SendMailBO();
         mailBO.setContent("测试");
         mailBO.setSubject("测试");
-        mailBO.setTo(new String[]{"549255020@qq.com","god_world@163.com","deniszhong@126.com"});
+        mailBO.setTo(new String[]{"549255020@qq.com","god_world@163.com","126.com"});
 
         Boolean flag = mailService.sendSimpleEmail(mailBO);
         ResultDTO result =  new ResultDTO<Boolean>();

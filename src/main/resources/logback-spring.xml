@@ -41,6 +41,7 @@
     <!--若是additivity设为false，则子Logger只会在自己的appender里输出，而不会在父Logger的appender里输出-->
     <logger name="org.springframework" level="DEBUG" additivity="false">
         <appender-ref ref="ROLLING" />
+        <appender-ref ref="STDOUT"/>
     </logger>
     <logger name ="com.denis.zhong.world" level="INFO" additivity="false">
         <appender-ref ref="STDOUT"/>
@@ -61,6 +62,6 @@
     <root level="DEBUG">
         <!--<appender-ref ref="DB"/>-->
         <!--<appender-ref ref="EMAIL"/>-->
-        <appender-ref ref="ROLLING" />
+        <appender-ref ref="STDOUT" />
     </root>
 </configuration>
