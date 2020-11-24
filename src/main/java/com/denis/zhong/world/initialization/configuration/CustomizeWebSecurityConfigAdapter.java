@@ -39,18 +39,18 @@ public class CustomizeWebSecurityConfigAdapter extends WebSecurityConfigurerAdap
 //        super.configure(http);
         //这种模式 应该也不适用 分布式（集群）
         http.authorizeRequests()
-                .antMatchers("/login.html","/error.html","/logout.html").permitAll()
-                .anyRequest().authenticated() //剩下的需要访问地址需要校验
-                .and()
-                    .formLogin()
-                    .loginPage("/login.html")
-                    .loginProcessingUrl("/login.do")
-                    .defaultSuccessUrl("/home.html")
-                    .failureForwardUrl("/error.html")
-                .and()
-                    .logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login.html");
+                .antMatchers("/index.html").permitAll()
+                .anyRequest().authenticated(); //剩下的需要访问地址需要校验
+//                .and()
+//                    .formLogin()
+//                    .loginPage("/login.html")
+//                    .loginProcessingUrl("/login.do")
+//                    .defaultSuccessUrl("/home.html")
+//                    .failureForwardUrl("/error.html")
+//                .and()
+//                    .logout()
+//                    .logoutUrl("/logout")
+//                    .logoutSuccessUrl("/login.html");
                 //.and().csrf().disable();
                 //跨域攻击 http验证 Referer
                 // 1.http验证 Referer 2.token防伪
