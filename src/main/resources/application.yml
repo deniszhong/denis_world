@@ -18,13 +18,24 @@ spring:
       time-between-eviction-runs-millis: 2000
       min-evictable-idle-time-millis: 600000
       max-evictable-idle-time-millis: 900000
-      filters: stat,log4j2,wall
+      filters: stat
       stat-view-servlet:
         url-pattern: /druid/*
         login-username: deniszhong
         login-password: 123456
-        reset-enable: true #允许清空统计数据
-        allow: 127.0.0.1/24
+        reset-enable: false #是否允许清空统计数据
+        allow: 127.0.0.1
+        deny: 172.16.5.11
+        enabled: true
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          merge-sql: true
+          slow-sql-millis: 2000
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
   mail:
     host: smtp.163.com
     username: god_world@163.com
@@ -35,19 +46,11 @@ spring:
 #      charset: UTF-8
 #      force: true
 #      force-request: true
-  #  boot:
-#    enableautoconfiguration: false
-  #spring.datasource.druid.filter.stat.enabled=true
-  #spring.datasource.druid.filter.stat.log-slow-sql=true
-  #spring.datasource.druid.filter.stat.slow-sql-millis=2000
-  #spring.datasource.druid.filter.stat.db-type=mysql
-
 
 mybatis:
   type-aliases-package: com.denis.zhong.world.entity
   mapper-locations: classpath:/mapper/*.xml
   config-location: classpath:/config/mybatis-config.xml
-
 
 server:
   port: 9090
