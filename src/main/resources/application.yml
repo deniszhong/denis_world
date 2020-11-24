@@ -19,6 +19,12 @@ spring:
       min-evictable-idle-time-millis: 600000
       max-evictable-idle-time-millis: 900000
       filters: stat,log4j2,wall
+      stat-view-servlet:
+        url-pattern: /druid/*
+        login-username: deniszhong
+        login-password: 123456
+        reset-enable: true #允许清空统计数据
+        allow: 127.0.0.1/24
   mail:
     host: smtp.163.com
     username: god_world@163.com
@@ -43,7 +49,5 @@ mybatis:
   config-location: classpath:/config/mybatis-config.xml
 
 
-
-
-
-
+server:
+  port: 9090
