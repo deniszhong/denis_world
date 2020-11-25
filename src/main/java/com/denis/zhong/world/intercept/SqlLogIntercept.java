@@ -46,7 +46,7 @@ public class SqlLogIntercept implements Interceptor {
     public Object intercept(Invocation invocation) throws Throwable {
         // 获取执行方法的MappedStatement参数,不管是Executor的query方法还是update方法，第一个参数都是MappedStatement
         MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
-        Properties prop = mappedStatement.getConfiguration().getVariables();
+//        Properties prop = mappedStatement.getConfiguration().getVariables();
 //        System.out.println("~~~~~~~~~~"+prop.getProperty("enableExecutorTime"));
         Object parameter = null;
         if (invocation.getArgs().length > 1) {

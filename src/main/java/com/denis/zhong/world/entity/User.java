@@ -1,5 +1,7 @@
 package com.denis.zhong.world.entity;
 
+import lombok.ToString;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @author deniszhong
  * @since 2020-11-19 15:27:00
  */
+@ToString
 public class User implements Serializable {
     private static final long serialVersionUID = -65722822249244632L;
     

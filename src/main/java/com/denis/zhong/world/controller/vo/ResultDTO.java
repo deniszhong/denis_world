@@ -4,6 +4,19 @@ import com.denis.zhong.world.common.constant.CommonConstant;
 
 public class ResultDTO<T> {
 
+    public ResultDTO() {
+    }
+
+    public ResultDTO(T data) {
+        this.data = data;
+    }
+
+    public ResultDTO(String message, String code, T data) {
+        this.message = message;
+        this.code = code;
+        this.data = data;
+    }
+
     private String message = CommonConstant.SUCCESS_MESSAGE;
 
     private String code = CommonConstant.SUCCESS_CODE;
