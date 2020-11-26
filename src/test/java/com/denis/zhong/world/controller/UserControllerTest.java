@@ -17,7 +17,7 @@ class UserControllerTest extends BaseTest {
 
     @Test
     void login() throws Exception{
-        CountDownLatch latch = new CountDownLatch(1);
+//        CountDownLatch latch = new CountDownLatch(1);
         User user = new User();
         user.setDeleted(0);
         user.setUserName("zzf");
@@ -29,6 +29,6 @@ class UserControllerTest extends BaseTest {
         ResultActions actions = this.mockMvc.perform(requestBuilder);
         MockHttpServletResponse response = actions.andReturn().getResponse();
         System.out.println(JSON.toJSONString(response));
-        latch.await();
+//        latch.await();
     }
 }

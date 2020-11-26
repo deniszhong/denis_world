@@ -41,6 +41,13 @@ spring:
     username: god_world@163.com
     password: ERZKJIXAYFKIOBSC
     port: 25
+  rabbitmq:
+    host: 121.196.54.2
+    port: 5672
+    virtual-host: /
+    password: guest
+    username: guest
+
 #  http:
 #    encoding:
 #      charset: UTF-8

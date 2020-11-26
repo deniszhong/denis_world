@@ -2,6 +2,7 @@ package com.denis.zhong.world.controller;
 
 import com.denis.zhong.world.controller.vo.ResultDTO;
 import com.denis.zhong.world.entity.Topic;
+import com.denis.zhong.world.message.rabbitmq.publisher.SendMsgPublisher;
 import com.denis.zhong.world.service.TopicService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,9 @@ public class TopicController {
     @Resource
     private TopicService topicService;
 
+    @Resource
+    private SendMsgPublisher sendMsgPublisher;
+
     /**
      * 通过主键查询单条数据
      *
@@ -35,6 +39,9 @@ public class TopicController {
         ResultDTO<Topic> result = new ResultDTO<>();
         Topic topic = this.topicService.queryById(id);
         result.setData(topic);
+        for (int i =0 ;i<10000;i++) {
+            sendMsgPublisher.sendMq();
+        }
         return result;
 
     }
