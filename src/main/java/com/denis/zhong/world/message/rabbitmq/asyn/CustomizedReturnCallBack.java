@@ -12,6 +12,7 @@ public class CustomizedReturnCallBack implements RabbitTemplate.ReturnCallback {
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange,
                                 String routingKey) {
-        log.info(JSON.toJSONString(message)+"|| routingkey:{}",routingKey);
+        log.info(JSON.toJSONString(message)+"|| routingkey:{}，" +
+                "replyCode：{},",routingKey);
     }
 }
