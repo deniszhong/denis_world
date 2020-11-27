@@ -24,8 +24,8 @@ public class UserController {
     @RequestMapping("/login")
     public ResultDTO<User> login(@RequestBody User user){
           publisher.sendMsg(user);
-        for (int i =0 ;i<1000;i++) {
-            sendMsgPublisher.sendMq();
+        for (int i =0 ;i<1;i++) {
+            sendMsgPublisher.sendMq(user);
         }
         return new ResultDTO<>(user);
     }

@@ -27,7 +27,7 @@ public class User implements Serializable {
     /**
     * 创建时间
     */
-    private Object createTime;
+    private Date createTime;
     /**
     * 修改时间
     */
@@ -77,11 +77,11 @@ public class User implements Serializable {
         this.deleted = deleted;
     }
 
-    public Object getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Object createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
