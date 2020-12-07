@@ -3,6 +3,7 @@ package com.denis.zhong.world.message.rabbitmq.conf;
 import com.denis.zhong.world.message.rabbitmq.asyn.ConfirmMsgSent;
 import com.denis.zhong.world.message.rabbitmq.asyn.CustomizedReturnCallBack;
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -22,7 +23,11 @@ public class RabbitConfiguration {
 
     @Bean(name="countQueue")
     public Queue createCountQueue(){
-        return new Queue("count_queue");
+        Queue queue = new Queue("count_queue");
+        //3600s 没有被访问 消息被删除
+        queue.addArgument("x-message-ttl","3600");
+        queue.addArgument("x-expires","7200");
+        return queue;
     }
 
     @Bean(name="directExchange")
@@ -78,5 +83,7 @@ public class RabbitConfiguration {
         connectionFactory.setVirtualHost(properties.getVirtualHost());
         return connectionFactory;
     }
+
+
 
 }

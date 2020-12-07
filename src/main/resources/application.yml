@@ -47,6 +47,9 @@ spring:
     virtual-host: /
     password: guest
     username: guest
+  redis:
+    host: 121.196.54.2
+    port: 6379
 
 #  http:
 #    encoding:

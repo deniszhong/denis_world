@@ -11,12 +11,12 @@ public class ConfirmMsgSent implements RabbitTemplate.ConfirmCallback {
     //确认消息发送成功，通过实现ConfirmCallBack接口，消息发送到交换器Exchange后触发回调
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-    if(ack){
-        log.info("消息发送成功");
-    }else{
-        //TODO 业务
-        log.info("confirmMsg:{},cause:{}"+ JSON.toJSONString(correlationData),
-                cause);
-    }
+        if (ack) {
+            log.info("消息发送成功");
+        } else {
+            //TODO 业务
+            log.info("confirmMsg:{},cause:{}" + JSON.toJSONString(correlationData),
+                    cause);
+        }
     }
 }

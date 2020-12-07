@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
-//定义统一的异常处理类
+//定义统一的异常处理类 只处理controller层
 @ControllerAdvice(basePackages = "com.denis.zhong.world")
 public class DefaultExceptionHandlerController {
 
