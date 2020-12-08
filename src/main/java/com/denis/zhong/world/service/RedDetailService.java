@@ -1,6 +1,8 @@
 package com.denis.zhong.world.service;
 
 import com.denis.zhong.world.entity.RedDetail;
+import com.denis.zhong.world.service.bo.RobRedPackageBO;
+
 import java.util.List;
 
 /**
@@ -51,5 +53,12 @@ public interface RedDetailService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
+
+    /**
+     * 抢红包
+     * @param robRedPackageBO
+     * @return
+     */
+    RedDetail robRedPackage(RobRedPackageBO robRedPackageBO);
 
 }

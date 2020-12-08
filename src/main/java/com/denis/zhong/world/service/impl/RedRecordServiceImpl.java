@@ -5,6 +5,7 @@ import com.denis.zhong.world.entity.RedDetail;
 import com.denis.zhong.world.entity.RedRecord;
 import com.denis.zhong.world.dao.RedRecordDao;
 import com.denis.zhong.world.service.RedRecordService;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 红包记录表(RedRecord)表服务实现类
@@ -28,6 +30,9 @@ public class RedRecordServiceImpl implements RedRecordService {
 
     @Resource
     private RedDetailDao redDetailDao;
+
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 通过ID查询单条数据
@@ -53,7 +58,7 @@ public class RedRecordServiceImpl implements RedRecordService {
     }
 
     /**
-     * 新增数据
+     * 生成红包及相关详情
      *
      * @param redRecord 实例对象
      * @return 实例对象
@@ -62,8 +67,13 @@ public class RedRecordServiceImpl implements RedRecordService {
     @Transactional
     public RedRecord insert(RedRecord redRecord) {
         this.redRecordDao.insert(redRecord);
-        List<RedDetail> redDetailList = this.randomRedForUser(redRecord.getAmount(),redRecord.getNum(),redRecord.getId());
-        redDetailDao.batchInsert(redDetailList);
+        List<RedDetail> redDetailList = this.randomRedForUser(redRecord.getAmount(), redRecord.getNum(), redRecord.getId());
+        int count = redDetailDao.batchInsert(redDetailList);
+        if (count > 0) {
+            //key 暂时简单设计
+            redisTemplate.opsForList().leftPushAll(redRecord.getId().toString(), redDetailList);
+            redisTemplate.expire(redRecord.getId().toString(), 24 * 60 * 60, TimeUnit.SECONDS);
+        }
         return redRecord;
     }
 
@@ -92,6 +102,7 @@ public class RedRecordServiceImpl implements RedRecordService {
 
     /**
      * 随机生成红包
+     *
      * @param amount
      * @param number
      * @param redRecordId

@@ -1,12 +1,16 @@
 package com.denis.zhong.world.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.denis.zhong.world.entity.RedDetail;
 import com.denis.zhong.world.dao.RedDetailDao;
 import com.denis.zhong.world.service.RedDetailService;
+import com.denis.zhong.world.service.bo.RobRedPackageBO;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 红包明细表(RedDetail)表服务实现类
@@ -16,8 +20,12 @@ import java.util.List;
  */
 @Service("redDetailService")
 public class RedDetailServiceImpl implements RedDetailService {
+
     @Resource
     private RedDetailDao redDetailDao;
+
+    @Resource
+    private RedisTemplate redisTemplate;
 
     /**
      * 通过ID查询单条数据
@@ -75,5 +83,11 @@ public class RedDetailServiceImpl implements RedDetailService {
     @Override
     public boolean deleteById(Long id) {
         return this.redDetailDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public RedDetail robRedPackage(RobRedPackageBO bo) {
+        JSONArray redDetailJsonArray =  (JSONArray)redisTemplate.opsForList().rightPop(bo.getRedRecordId().toString());
+        return redDetailJsonArray.toJavaObject(RedDetail.class);
     }
 }
