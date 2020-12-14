@@ -1,6 +1,7 @@
 package com.denis.zhong.world.util.help.test;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionService;
 import java.util.concurrent.CountDownLatch;
 import java.util.function.BiConsumer;
 
@@ -36,5 +37,6 @@ public class CompletableFutureTest {
             }
         });
         latch.await();
+
     }
 }

@@ -48,9 +48,10 @@ spring:
     password: guest
     username: guest
   redis:
-    host: 121.196.54.2
-    port: 6379
-
+#    host: 121.196.54.2
+#    port: 6379
+    redisson:
+      file: classpath:config/redission.yaml
 #  http:
 #    encoding:
 #      charset: UTF-8

@@ -5,6 +5,7 @@ import com.denis.zhong.world.dao.UserDao;
 import com.denis.zhong.world.entity.User;
 import com.denis.zhong.world.service.cache.CacheKeyConstant;
 import com.denis.zhong.world.service.cache.user.IUserCacheService;
+import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class UserCacheServiceImpl implements IUserCacheService {
 
     @Resource
     private RedisTemplate redisTemplate;
+
+    @Resource
+    private RedissonClient redissonClient;
     @Resource
     private UserDao userDao;
 
