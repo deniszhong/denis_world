@@ -34,6 +34,11 @@ public class ResourceUtils {
         System.out.println(file.getName());
     }
 
+    /***
+     * 读不到文件 可能是没有编译 发布到相应的目录下
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException{
         ResourceUtils.readResource("classpath:config/mybatis-config.xml");
 //        ResourceUtils.readResourceByClassPath("mybatis-config.xml");
